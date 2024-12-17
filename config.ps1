@@ -24,7 +24,7 @@ $WshShell.SendKeys([char]175) # Volume Up
 #Anydesk Installation
 # Define the URL and the destination path for the download
 $downloadUrl = "https://download.anydesk.com/AnyDesk.exe"
-$destinationPath = "$env:TEMP\AnyDesk.exe"
+$destinationPath = "c:\AnyDesk.exe"
 
 # Download the AnyDesk installer
 Invoke-WebRequest -Uri $downloadUrl -OutFile $destinationPath
