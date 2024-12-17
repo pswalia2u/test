@@ -39,8 +39,7 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -Value
 #>
 
-
 Install-Script -Name Get-WindowsAutopilotInfo -Force
 # Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
-Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk
+Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk -Force
 
