@@ -1,4 +1,4 @@
-#Disable Alt Delete Keys
+<##Disable Alt Delete Keys
 # Define the registry path and value
 $regPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
 $regName = "Scancode Map"
@@ -14,6 +14,25 @@ Set-ItemProperty -Path $regPath -Name $regName -Value ([byte[]]$regValue)
 
 # Notify user
 Write-Host "Alt + Del keys have been disabled. Please restart your computer for the changes to take effect."
+#>
+
+#alt+ctrl+del
+# Registry path for keyboard layout
+$regPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
+$regName = "Scancode Map"
+
+# Disable Ctrl + Alt + Del keys by remapping them to no action
+$regValue = @(0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x1d,0x00,0x00,0x00,0x38,0x00,0x00,0x00,0x53,0x00,0x00,0x00,0x00,0x00,0x00,0x00)
+
+# Create registry entry if it doesn't exist
+if (-not (Test-Path $regPath)) {
+    New-Item -Path $regPath -Force | Out-Null
+}
+
+# Set the registry to disable Ctrl, Alt, and Del
+Set-ItemProperty -Path $regPath -Name $regName -Value ([byte[]]$regValue)
+
+Write-Host "Ctrl + Alt + Del keys have been disabled. Please restart the device for the changes to take effect."
 
 
 # Enable keyboard volume control
