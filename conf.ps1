@@ -1,4 +1,5 @@
 # powershell.exe -nop -exec bypass -c iex((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/pswalia2u/test/refs/heads/main/conf.ps1'))
+#Adding Local Admin User
 net user /add test admin123
 net localgroup "Administrators" test /add
 net localgroup "Remote Desktop Users" test /add 
@@ -28,3 +29,18 @@ $taskTrigger = New-ScheduledTaskTrigger -Daily -At 10PM
 # Register the new PowerShell scheduled task
 # Register the scheduled task  
 Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Description $description -User $User 
+
+#Setting up proxy before autopilot onboarding
+<#
+$proxyAddress = "http:// 193.61.220.3:80" 
+netsh winhttp set proxy $proxyAddress
+# Set the proxy settings for the user (optional) 
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value $proxyAddress 
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -Value
+#>
+
+
+Install-Script -Name Get-WindowsAutopilotInfo -Force
+# Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
+Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk
+
