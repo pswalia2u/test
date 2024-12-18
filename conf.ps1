@@ -63,8 +63,10 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet
 Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.com"
 #Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:$false
 Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -Command Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:`$false" -Wait
+Write-Output "Sleeping for 5 seconds"
+Start-Sleep -Seconds 5
 Write-Output "Getting loggedin. Please run 'Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps'"
-#Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps
+Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps
 
 
 
