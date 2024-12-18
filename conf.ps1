@@ -9,7 +9,7 @@ Write-Output "Local administrator account test created and added to the Administ
 # Download the AnyDesk installer
 Invoke-WebRequest -Uri "https://download.anydesk.com/AnyDesk.exe" -OutFile "c:\AnyDesk.exe"
 # Install AnyDesk with the specified parameters
-Start-Process -FilePath $destinationPath -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --update-auto' -Wait
+Start-Process -FilePath "c:\AnyDesk.exe" -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --update-auto' -Wait
 # Clean up by removing the installer
 Remove-Item -Path $destinationPath
 
