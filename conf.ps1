@@ -46,14 +46,10 @@ Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk -Force
 #Disable Translate popup for msedge
 # Define the registry path for Edge settings
 $EdgeSettingsPath = "HKLM:\Software\Policies\Microsoft\Edge"
-
 # Create the registry key if it doesn't exist
 if (-Not (Test-Path $EdgeSettingsPath)) {
     New-Item -Path $EdgeSettingsPath -Force
 }
-
 # Set the policy to disable the translation popup
 Set-ItemProperty -Path $EdgeSettingsPath -Name "TranslateEnabled" -Value 0 -Type DWord
-
 Write-Output "Translation popup has been disabled in Microsoft Edge for all users."
-
