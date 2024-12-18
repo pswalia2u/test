@@ -6,12 +6,25 @@ net localgroup "Remote Desktop Users" test /add
 Write-Output "Local administrator account test created and added to the Administrators group."
 
 #Anydesk Installation
-# Download the AnyDesk installer
-Invoke-WebRequest -Uri "https://download.anydesk.com/AnyDesk.exe" -OutFile "c:\AnyDesk.exe"
-# Install AnyDesk with the specified parameters
-Start-Process -FilePath "c:\AnyDesk.exe" -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --update-auto' -Wait
-# Clean up by removing the installer
-Remove-Item -Path "c:\AnyDesk.exe"
+try {
+    # Download the AnyDesk installer
+    Invoke-WebRequest -Uri "https://download.anydesk.com/AnyDesk.exe" -OutFile "c:\AnyDesk.exe" -ErrorAction Stop
+    Write-Output "AnyDesk installer downloaded successfully."
+
+    # Install AnyDesk with the specified parameters
+    Start-Process -FilePath "c:\AnyDesk.exe" -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --update-auto' -Wait -ErrorAction Stop
+    Write-Output "AnyDesk installed successfully."
+}
+catch {
+    Write-Error "An error occurred: $_"
+}
+finally {
+    # Clean up by removing the installer
+    if (Test-Path "c:\AnyDesk.exe") {
+        Remove-Item -Path "c:\AnyDesk.exe" -ErrorAction SilentlyContinue
+        Write-Output "Installer cleaned up."
+    }
+}
 
 #Shutdown Scheduling
 # The name of your scheduled task.  
