@@ -27,6 +27,17 @@ $taskTrigger = New-ScheduledTaskTrigger -Daily -At 10PM
 # Register the scheduled task  
 Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Description $description -User $User 
 
+#Disable Translate popup for msedge
+# Define the registry path for Edge settings
+$EdgeSettingsPath = "HKLM:\Software\Policies\Microsoft\Edge"
+# Create the registry key if it doesn't exist
+if (-Not (Test-Path $EdgeSettingsPath)) {
+    New-Item -Path $EdgeSettingsPath -Force
+}
+# Set the policy to disable the translation popup
+Set-ItemProperty -Path $EdgeSettingsPath -Name "TranslateEnabled" -Value 0 -Type DWord
+Write-Output "Translation popup has been disabled in Microsoft Edge for all users."
+
 #Setting up proxy before autopilot onboarding
 <#
 $proxyAddress = "http:// 193.61.220.3:80" 
@@ -39,20 +50,8 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet
 Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.com"
 #Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:$false
 Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -Command Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:`$false" -Wait
-# Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
-Start-Sleep -Seconds 5
-Write-Output "Getting loggedin"
-Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force
-#Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `\"C:\Path\To\Get-WindowsAutopilotInfo.ps1`\" -online -GroupTag Kiosk_ps -Force -Confirm:`$false" -Wait
+Write-Output "Getting loggedin. Please run 'Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps'"
+#Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps
 
 
-#Disable Translate popup for msedge
-# Define the registry path for Edge settings
-$EdgeSettingsPath = "HKLM:\Software\Policies\Microsoft\Edge"
-# Create the registry key if it doesn't exist
-if (-Not (Test-Path $EdgeSettingsPath)) {
-    New-Item -Path $EdgeSettingsPath -Force
-}
-# Set the policy to disable the translation popup
-Set-ItemProperty -Path $EdgeSettingsPath -Name "TranslateEnabled" -Value 0 -Type DWord
-Write-Output "Translation popup has been disabled in Microsoft Edge for all users."
+
