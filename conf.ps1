@@ -11,7 +11,7 @@ Invoke-WebRequest -Uri "https://download.anydesk.com/AnyDesk.exe" -OutFile "c:\A
 # Install AnyDesk with the specified parameters
 Start-Process -FilePath "c:\AnyDesk.exe" -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --update-auto' -Wait
 # Clean up by removing the installer
-Remove-Item -Path $destinationPath
+Remove-Item -Path "c:\AnyDesk.exe"
 
 #Shutdown Scheduling
 # The name of your scheduled task.  
