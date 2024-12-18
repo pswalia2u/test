@@ -66,7 +66,7 @@ Start-Process -FilePath "powershell.exe" -ArgumentList " -Command Install-Script
 Write-Output "Sleeping for 5 seconds"
 Start-Sleep -Seconds 5
 Write-Output "Getting loggedin. Please run 'Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps'"
-Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps
+& "C:\Program Files\WindowsPowerShell\Scripts\Get-WindowsAutopilotInfo.ps1" -online -GroupTag Kiosk_ps
 
 
 
