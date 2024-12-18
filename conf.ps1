@@ -40,7 +40,10 @@ Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.
 #Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:$false
 Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -Command Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:`$false" -Wait
 # Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
+Start-Sleep -Seconds 5
+Write-Output "Getting loggedin"
 Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force -Confirm:$false
+#Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `\"C:\Path\To\Get-WindowsAutopilotInfo.ps1`\" -online -GroupTag Kiosk_ps -Force -Confirm:`$false" -Wait
 
 
 #Disable Translate popup for msedge
