@@ -36,10 +36,12 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -Value
 #>
 
-Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:$false
-# Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
-#Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force -Confirm:$false
+Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.com"
+#Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:$false
 Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -Command Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:`$false" -Wait
+# Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
+Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force -Confirm:$false
+
 
 #Disable Translate popup for msedge
 # Define the registry path for Edge settings
