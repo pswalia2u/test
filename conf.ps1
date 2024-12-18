@@ -42,7 +42,7 @@ Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -Command Inst
 # Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
 Start-Sleep -Seconds 5
 Write-Output "Getting loggedin"
-Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force -Confirm:$false
+Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force
 #Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `\"C:\Path\To\Get-WindowsAutopilotInfo.ps1`\" -online -GroupTag Kiosk_ps -Force -Confirm:`$false" -Wait
 
 
