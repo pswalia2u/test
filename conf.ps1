@@ -38,7 +38,8 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet
 
 Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:$false
 # Run the script to collect Autopilot info and upload it with a group tag, bypassing prompts 
-Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force -Confirm:$false
+#Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps -Force -Confirm:$false
+Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -Command Install-Script -Name Get-WindowsAutopilotInfo -Force -Confirm:`$false" -Wait
 
 #Disable Translate popup for msedge
 # Define the registry path for Edge settings
