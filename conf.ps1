@@ -54,8 +54,8 @@ Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.
 Start-Process -FilePath "powershell.exe" -ArgumentList " -Command Install-Script -Name Get-WindowsAutopilotInfo -Scope AllUsers -Force -Confirm:`$false" -Wait
 Write-Output "Sleeping for 5 seconds"
 Start-Sleep -Seconds 5
-Write-Output "Getting loggedin. Please run 'Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk_ps'"
-& "C:\Program Files\WindowsPowerShell\Scripts\Get-WindowsAutopilotInfo.ps1" -online -GroupTag Kiosk_ps
+Write-Output "Getting loggedin. Running 'Get-WindowsAutopilotInfo.ps1 -online -GroupTag Kiosk'"
+& "C:\Program Files\WindowsPowerShell\Scripts\Get-WindowsAutopilotInfo.ps1" -online -GroupTag Kiosk
 
 
 
