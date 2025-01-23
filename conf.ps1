@@ -105,5 +105,5 @@ Start-Process -FilePath "powershell.exe" -ArgumentList " -Command Install-Script
 Write-Output "Sleeping for 5 seconds"
 Start-Sleep -Seconds 5
 Write-Output "Getting loggedin. Running 'Get-WindowsAutopilotInfo.ps1 -online -GroupTag NBA_BAC'"
-& "C:\Program Files\WindowsPowerShell\Scripts\Get-WindowsAutopilotInfo.ps1" -online -GroupTag NBA_BAC
+& "C:\Program Files\WindowsPowerShell\Scripts\Get-WindowsAutopilotInfo.ps1" -online -GroupTag Kiosk
 #OrderID = GroupTag
