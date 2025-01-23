@@ -99,6 +99,7 @@ try {
     Write-Error "Failed to set proxy exceptions for current user. Error: $_"
 }
 #>
+# Note: you can remove proxy settings by using this “Start-Process -FilePath "ms-settings:recovery"” if you configured wrong proxy by mistake.
  
 Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.com"
 #Install-Script -Name Get-WindowsAutopilotInfo -Scope AllUsers -Force -Confirm:$false
