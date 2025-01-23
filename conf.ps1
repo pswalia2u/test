@@ -44,7 +44,8 @@ $taskTrigger = New-ScheduledTaskTrigger -Daily -At 10PM
 # Register the new PowerShell scheduled task
 # Register the scheduled task  
 Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Description $description -User $User 
- 
+
+<#
 #Setting up proxy before autopilot onboarding
 # Enable Proxy Server for all users
 try {
@@ -97,7 +98,7 @@ try {
 } catch {
     Write-Error "Failed to set proxy exceptions for current user. Error: $_"
 }
- 
+#>
  
 Write-Output "Installing Get-WindowsAutopilotInfo script from powershellgallery.com"
 #Install-Script -Name Get-WindowsAutopilotInfo -Scope AllUsers -Force -Confirm:$false
